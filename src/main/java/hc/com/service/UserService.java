@@ -11,14 +11,15 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private RecaptchService recaptchaService;
+   // @Autowired
+   // private RecaptchService recaptchaService;
 
     public User signUp(User user) {
-    	boolean isRecaptchaValid = recaptchaService.verifyRecaptcha(user.getRecaptchaToken());
-        if (!isRecaptchaValid) {
-            throw new RuntimeException("reCAPTCHA verification failed!");
-        }
+    	//boolean isRecaptchaValid = recaptchaService.verifyRecaptcha(user.getRecaptchaToken());
+		/*
+		 * if (!isRecaptchaValid) { throw new
+		 * RuntimeException("reCAPTCHA verification failed!"); }
+		 */
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new RuntimeException("User already exists!");
         }

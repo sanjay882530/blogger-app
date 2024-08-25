@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 
-@Service
+//@Service
 public class RecaptchService {
 	 @Value("${recaptcha.secret.key}")
 	    private String recaptchaSecretKey;

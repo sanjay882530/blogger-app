@@ -89,12 +89,13 @@ public class BlogController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBlog(@PathVariable Long id, @RequestHeader("username") String username) {
-        User user = userService.login(username, ""); // Replace with proper token validation
-        if (!user.getRole().equals("BLOGGER")) {
-            throw new RuntimeException("Not authorized!");
-        }
-        blogRepository.deleteById(id);
+    public String deleteBlog(@PathVariable Long id) {
+    	Blog blog = blogRepository.findById(id).orElse(null);
+    	if(blog!=null) {
+         blogRepository.deleteById(id);
+         return "Blog deleted succussfuly";
+    	}else 
+    		return "Faild to deleted blog";
     }
 
     @PutMapping("/{id}")
